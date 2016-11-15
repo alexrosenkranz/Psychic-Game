@@ -6,6 +6,7 @@
 </head>
 <body>
 <h2>The Psychic Game</h2>
+<h3>Press any key to start.</h3>
 	<div id="game">
 	
 
@@ -27,12 +28,12 @@
 	var display = document.querySelector("#game");
 
 	function displayResults(){
-        var string = '<p>Wins: ' + wins; + '</p>';
-        string += '<p>Losses: ' + losses; + '</p>';
-        string += '<p>Guesses Left: ' + lives; + '</p>';
-        string += '<p>Your Guesses: ' + guesses; + '</p>';
-        display.innerHTML = string;
-      }
+    var string = '<p>Wins: ' + wins; + '</p>';
+    string += '<p>Losses: ' + losses; + '</p>';
+    string += '<p>Guesses Left: ' + lives; + '</p>';
+    string += '<p>Your Guesses: ' + guesses; + '</p>';
+    display.innerHTML = string;
+  }
 
 	document.onkeyup = function(event){
 		var key = event.key;
@@ -48,20 +49,23 @@
 
 		if (guesses < 10) {
 			if (key === computerChoice) {
+					alert("You win, the computer stinks!");
 					wins++;
 					guesses++;
 					displayResults();
 					resetGame();
 			}
-			else if (lives == 0) {
-				losses++;
-				resetGame();
-			}
 			else {
 				lives--;
+				guesses++;
 				displayResults();
 
 			}
+		}
+		else {
+			alert("Computer wins, you lose!");
+			losses++;
+			resetGame();
 		}
 
 	}
